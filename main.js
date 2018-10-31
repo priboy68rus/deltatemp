@@ -1,15 +1,22 @@
 const API_URL = "https://api.apixu.com/v1/";
 const API_KEY = "5ab92edabc6c433188065649183110";
 
-var deltac = document.querySelector(".deltac");
-var deltaf = document.querySelector(".deltaf");
-var currc = document.querySelector(".currc");
-var currf = document.querySelector(".currf");
+var delta = document.querySelector(".delta");
+// var deltaf = document.querySelector(".deltaf");
+var curr = document.querySelector(".curr");
+// var currf = document.querySelector(".currf");
 var main_row = document.querySelector(".main-row");
 var header = document.querySelector(".header");
+var switchElement = document.querySelector("#switch");
 
 var current_location;
 var location_string;
+
+var curr_c;
+var curr_f;
+
+var delta_c;
+var delta_f;
 
 window.addEventListener('load', (e) => {
     getLocation();
@@ -32,8 +39,8 @@ function setCurrentWeather() {
     .then(d => {
         t = d.current;
         location_string = d.location.name;
-        currc.textContent = `${t.temp_c} °C`;
-        currf.textContent = `${t.temp_f} °F`;
+        curr_c = t.temp_c;
+        curr_f = t.temp_f;
     })
     .then(setHeader)
     .then(setDeltaWeather);
@@ -41,6 +48,7 @@ function setCurrentWeather() {
 
 function setDeltaWeather() {
     var d = new Date();
+    d.setTime(d.getTime() - 24 * 3600 * 1000);
     var month = d.getUTCMonth() + 1;
     if (month < 10) {
         month = "0" + month;
@@ -50,15 +58,11 @@ function setDeltaWeather() {
     .then(data => data.json())
     .then(d => d.forecast.forecastday[0].day)
     .then(t => {
-        curr_c = parseFloat(currc.textContent.slice(0, -3));
-        deltac.textContent = `${(curr_c - t.avgtemp_c).toFixed(1)} °C`;
-
-        console.log(t);
-        curr_f = parseFloat(currf.textContent.slice(0, -3));
-        console.log(curr_f);
-        deltaf.textContent = `${(curr_f - t.avgtemp_f).toFixed(1)} °F`;
+        
+        delta_c = curr_c - t.avgtemp_c;
+        delta_f = curr_f - t.avgtemp_f;  
     })
-    .then(e => { main_row.style.display = "block"; });
+    .then(setContent, false);
 }
 
 function setHeader() {
@@ -67,3 +71,14 @@ function setHeader() {
     header.textContent = location_string + "   " + time_str;
 }
 
+function setContent(toggle) {
+    if (!toggle) {
+        delta.textContent = delta_c.toFixed(1) + "°C";
+        curr.textContent = `${curr_c} °C`;
+    } else {
+        delta.textContent = delta_f.toFixed(1) + "°F";
+        curr.textContent = `${curr_f} °C`;
+    }
+    main_row.style.display = "block";
+    
+}

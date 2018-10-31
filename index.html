@@ -3,38 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="switch.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="https://freepngimg.com/download/weather/23527-3-weather.png" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DeltaTemp</title>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="five columns">
-                <p class="header">
-                    
+            <div class="seven columns">
+                <p class="header">    
                 </p>
             </div>
-            <div class="two columns delta-label">
-                delta
+            <div class="one column">
+                <div id="switch-container">
+                    <div class="inner-container">
+                        <div class="toggle">
+                            <p>°F</p>
+                        </div>
+                        <div class="toggle">
+                            <p>°C</p>
+                        </div>
+                    </div>
+                    <div class="inner-container" id='toggle-container'>
+                        <div class="toggle">
+                            <p>°F</p>
+                        </div>
+                        <div class="toggle">
+                            <p>°C</p>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="five columns">
-                absolute
+            <div class="four columns">
+
             </div>
         </div>
         <div class="row main-row">
             <div class="seven columns">
-                <div class="deltac"> </div>
-                <div class="deltaf"> </div>
+                <div class="delta"> </div>
             </div>
-            <div class="five columns">
-                <div class="currc"> </div>
-                <div class="currf"> </div>
+            <div class="five columns current">
+                <div class="curr"> </div>
             </div>
         </div>
     </div>
     
-    
+    <script src="switch.js"></script>
     <script src="main.js"></script>
 </body>
 </html>

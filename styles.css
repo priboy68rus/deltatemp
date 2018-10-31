@@ -7,7 +7,8 @@
 
 .main-row {
     margin-top: 50px;
-    display: none;
+    opacity: 0;
+    transition: opacity 300ms ease-in-out;
 }
 
 .delta {
@@ -50,4 +51,17 @@
     }
 
     
+}
+
+.delta {
+    color: black;
+    transition: color 300ms ease-in-out 0.7s;
+}
+
+.warm {
+    color: rgb(255, 0, 0);
+}
+
+.cold {
+    color: rgb(0, 162, 255);
 }

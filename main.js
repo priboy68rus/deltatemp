@@ -62,7 +62,8 @@ function setDeltaWeather() {
         delta_c = curr_c - t.avgtemp_c;
         delta_f = curr_f - t.avgtemp_f;  
     })
-    .then(setContent, false);
+    .then(setContent, false)
+    .then(setColor);
 }
 
 function setHeader() {
@@ -79,6 +80,15 @@ function setContent(toggle) {
         delta.textContent = delta_f.toFixed(1) + "°F";
         curr.textContent = `${curr_f} °C`;
     }
-    main_row.style.display = "block";
-    
+    main_row.style.opacity = 1;
+    console.log("content set");
+}
+
+function setColor() {
+    console.log("color is setting");
+    if (delta_c < 0) {
+        delta.classList.add("cold");
+    } else {
+        delta.classList.add("warm");
+    }
 }

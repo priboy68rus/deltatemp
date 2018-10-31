@@ -1,0 +1,38 @@
+@font-face { font-family: Moscow; src: url('moscow.ttf'); } 
+
+* {
+    font-family: Moscow;
+    font-size: 25px;
+}
+
+.main-row {
+    margin-top: 50px;
+}
+
+.deltac {
+    text-align: right;
+    font-size: 100px;
+}
+
+.deltaf {
+    text-align: right;
+    font-size: 40px;
+}
+
+.currc {
+    margin-top: 40px;
+    font-size: 30px;
+}
+
+.currf {
+    margin-top: 80px;
+    font-size: 20px;
+}
+
+.delta-label {
+    text-align: right;
+}
+
+.main-row {
+    display: none;
+}

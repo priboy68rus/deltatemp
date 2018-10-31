@@ -1,4 +1,4 @@
-const API_URL = "http://api.apixu.com/v1/";
+const API_URL = "https://api.apixu.com/v1/";
 const API_KEY = "5ab92edabc6c433188065649183110";
 
 var deltac = document.querySelector(".deltac");

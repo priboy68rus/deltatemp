@@ -2,12 +2,13 @@ const API_URL = "https://api.apixu.com/v1/";
 const API_KEY = "5ab92edabc6c433188065649183110";
 
 var delta = document.querySelector(".delta");
-// var deltaf = document.querySelector(".deltaf");
+var degree = document.querySelector(".degree");
+var delta_container = document.querySelector(".delta-container");
 var curr = document.querySelector(".curr");
-// var currf = document.querySelector(".currf");
 var main_row = document.querySelector(".main-row");
 var header = document.querySelector(".header");
 var switchElement = document.querySelector("#switch");
+var img_curr = document.querySelector(".img-curr");
 
 var current_location;
 var location_string;
@@ -36,11 +37,16 @@ function getLocation() {
 function setCurrentWeather() {
     fetch(API_URL + `current.json?key=${API_KEY}&q=${current_location}`)
     .then(data => data.json())
+    .then(data => {console.log(data); return data;})
     .then(d => {
         t = d.current;
         location_string = d.location.name;
         curr_c = t.temp_c;
         curr_f = t.temp_f;
+
+        if (t.condition != null && t.condition.icon != null) {
+            img_curr.innerHTML = `<img src=https:${t.condition.icon} />`;
+        }
     })
     .then(setHeader)
     .then(setDeltaWeather);
@@ -74,11 +80,13 @@ function setHeader() {
 
 function setContent(toggle) {
     if (!toggle) {
-        delta.textContent = delta_c.toFixed(1) + "°C";
+        delta.textContent = delta_c.toFixed(1);
+        degree.textContent = "°C";
         curr.textContent = `${curr_c} °C`;
     } else {
-        delta.textContent = delta_f.toFixed(1) + "°F";
-        curr.textContent = `${curr_f} °C`;
+        delta.textContent = delta_f.toFixed(1);
+        degree.textContent = "°F";
+        curr.textContent = `${curr_f} °F`;
     }
     main_row.style.opacity = 1;
     console.log("content set");
@@ -87,8 +95,8 @@ function setContent(toggle) {
 function setColor() {
     console.log("color is setting");
     if (delta_c < 0) {
-        delta.classList.add("cold");
+        delta_container.classList.add("cold");
     } else {
-        delta.classList.add("warm");
+        delta_container.classList.add("warm");
     }
 }

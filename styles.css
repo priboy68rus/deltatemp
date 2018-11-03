@@ -11,25 +11,35 @@
     transition: opacity 300ms ease-in-out;
 }
 
+.delta-container {
+    transition: color 300ms ease-in-out 0.7s;
+}
+
 .delta {
     text-align: right;
     font-size: 100px;
+    width: 70%;   
+}
+
+.degree {
+    margin-top: 24px;
+    font-size: 40px;
+    float: right;
+    width: 30%;
+}
+
+.img-curr {
+    float: right;
+    margin-top: 30px;
+    filter: grayscale(100%);
 }
 
 
 .curr {
-    margin-top: 40px;
+    margin-top: 30px;
     font-size: 30px;
 }
 
-
-.delta-label {
-    text-align: right;
-}
-
-.degree-label {
-    display: inline-block;
-}
 
 .header {
     text-align: right;
@@ -37,6 +47,10 @@
 
 #switch-container {
     margin: 0;
+}
+
+.delta-container p {
+    display: inline-block;
 }
 
 @media screen and (max-width: 549px) {
@@ -51,11 +65,6 @@
     }
 
     
-}
-
-.delta {
-    color: black;
-    transition: color 300ms ease-in-out 0.7s;
 }
 
 .warm {
